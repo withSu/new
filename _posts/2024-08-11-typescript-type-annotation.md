@@ -72,7 +72,6 @@ typora-root-url: ../
 ## 1.5 전역 패키지로 TypeScript 노드 패키지를 설치하기
 
 ```bash
-bash코드 복사
 npm i -g typescript
 ```
 
@@ -82,7 +81,6 @@ npm i -g typescript
 
 ```
 hello1.js
-jsx코드 복사
 const userId = 'hong';
 const userName = '홍길동';
 
@@ -106,7 +104,7 @@ sayHello(userId, userName);
 다음 명령어로 ts 파일을 실행한다.
 
 ```bash
-bash코드 복사
+
 tsc hello2.ts
 ```
 
@@ -116,7 +114,7 @@ tsc hello2.ts
 
 ```
 hello2.js
-jsx코드 복사
+
 var userId = "hong";
 var userName = "홍길동";
 function sayHello(userId, userName) {
@@ -128,7 +126,6 @@ sayHello(userId, userName);
 ## 2.2 타입스크립트 컴파일 옵션 --strictNullChecks 엄격체크 옵션의 의미
 
 ```bash
-bash코드 복사
 tsc --strictNullChecks hello2.ts
 ```
 
@@ -147,7 +144,6 @@ tsc --strictNullChecks hello2.ts
 옵션을 사용하지 않았을 때:
 
 ```tsx
-tsx코드 복사
 let age: number;
 console.log('나이는 ' + age + '세 입니다.');
 ```
@@ -157,7 +153,6 @@ console.log('나이는 ' + age + '세 입니다.');
 옵션을 사용했을 때:
 
 ```tsx
-tsx코드 복사
 let age: number;
 console.log('나이는 ' + age + '세 입니다.');
 ```
@@ -180,7 +175,6 @@ console.log('나이는 ' + age + '세 입니다.');
 1. 변수명, 함수명, 객체 속성명 뒤에 type을 써서 데이터 타입을 지정하는 것을 Type Annotation이라고 한다.
 
 ```tsx
-tsx코드 복사
 // 예시
 let age: number;
 ```
@@ -207,14 +201,12 @@ let age: number;
 ### 3.2.1 불리언
 
 ```tsx
-tsx코드 복사
 let isDone: boolean = false;
 ```
 
 ### 3.2.2 숫자 (number)
 
 ```tsx
-tsx코드 복사
 let decimal: number = 6;
 let hex: number = 0xf00d;
 let binary: number = 0b1010;
@@ -224,7 +216,6 @@ let octal: number = 0o744;
 ### 3.2.3 string
 
 ```tsx
-tsx코드 복사
 let color: string = "blue";
 color = 'red';
 ```
@@ -234,7 +225,6 @@ color = 'red';
 1. 템플릿 문자열을 사용하면 여러 줄에 걸쳐 문자열을 작성할 수 있으며, 표현식을 포함시킬 수 있다. 이 문자열은 백틱(`) 문자로 감싸지고,` ${expr}` 과 같은 형태로 표현식을 포함시킬 수 있다.
 
 ```tsx
-tsx코드 복사
 let fullName: string = `KBS`;
 let age: number = 37;
 
@@ -249,14 +239,12 @@ I'll be ${age+1} years old next month.`;
 3. 첫 번째 방법은 배열 요소들을 나타내는 타입 뒤에 `[]`를 쓰는 것이다.
 
 ```tsx
-tsx코드 복사
 let list: number[] = [1, 2, 3];
 ```
 
 1. 두 번째 방법은 제너릭 배열 타입을 사용하는 것이다.
 
 ```tsx
-tsx코드 복사
 let list: Array<number> = [1, 2, 3];
 ```
 
@@ -266,7 +254,6 @@ let list: Array<number> = [1, 2, 3];
 2. 단, 요소들의 타입이 모두 같을 필요는 없다. 예를 들어, number, string이 쌍으로 있는 값을 나타낼 수 있다.
 
 ```tsx
-tsx코드 복사
 // 튜플 타입으로 선언
 let x: [string, number];
 
@@ -280,7 +267,6 @@ x = [10, "hello"]; // 오류
 1. 정해진 인덱스 외에 다른 인덱스에 있는 요소에 접근하면, 오류가 발생하며 실패한다.
 
 ```tsx
-tsx코드 복사
 x[3] = "world"; // 오류, '[string, number]' 타입에는 프로퍼티 '3'이 없습니다.
 ```
 
@@ -289,7 +275,6 @@ x[3] = "world"; // 오류, '[string, number]' 타입에는 프로퍼티 '3'이 �
 1. enum은 값의 `집합에 더 나은 이름을 붙여줄 수` 있다.
 
 ```tsx
-tsx코드 복사
 enum Color {Red, Green, Blue}
 let c: Color = Color.Green;
 ```
@@ -298,7 +283,6 @@ let c: Color = Color.Green;
 2. 또는, `멤버 중 하나의 값을 수동으로 설정하여 번호를 바꿀 수` 있다.
 
 ```tsx
-tsx코드 복사
 enum Color {Red = 1, Green, Blue}
 let c: Color = Color.Green;
 ```
@@ -306,7 +290,6 @@ let c: Color = Color.Green;
 1. 혹은 `모든 값을 수동으로 설정`할 수 있다.
 
 ```tsx
-tsx코드 복사
 enum Color {Red = 1, Green = 2, Blue = 4}
 let c: Color = Color.Green;
 ```
@@ -314,7 +297,6 @@ let c: Color = Color.Green;
 1. Enum의 유용한 기능 중 하나는 매겨진 값을 사용해 enum 멤버의 이름을 알아낼 수 있다. 예를 들어:
 
 ```tsx
-tsx코드 복사
 enum Color {Red = 1, Green, Blue}
 let colorName: string = Color[2];
 
@@ -328,7 +310,6 @@ console.log(colorName); // 값이 2인 'Green'이 출력됩니다.
 1. `any` 타입은 TypeScript에서 매우 유연한 타입이다. `any`로 선언된 변수는 JavaScript처럼 어떤 종류의 값이든 가질 수 있으며, 컴파일러는 그 값의 타입을 검사하지 않는다. 예를 들어, `any` 타입의 변수는 문자열, 숫자, 함수, 객체 등 무엇이든 될 수 있다. 아래 코드에서 `any` 타입 변수인 `notSure`는 어떤 메서드나 프로퍼티를 호출해도 컴파일러가 오류를 발생시키지 않는다.
 
 ```tsx
-tsx코드 복사
 let notSure: any = 4;
 notSure.ifItExists(); // 성공, 컴파일러가 타입을 검사하지 않으므로 가능
 notSure.toFixed(); // 성공, toFixed 메서드는 존재하지만, 컴파일러는 검사하지 않음
@@ -338,7 +319,6 @@ notSure.toFixed(); // 성공, toFixed 메서드는 존재하지만, 컴파일러
 2. 또한, `any` 타입은 타입의 일부만 알고 전체는 알지 못할 때 유용하다. 예를 들어, 여러 다른 타입이 섞인 배열을 다룰 수 있다.
 
 ```tsx
-tsx코드 복사
 let list: any[] = [1, true, "free"];
 
 list[1] = 100;
@@ -349,7 +329,6 @@ list[1] = 100;
 1. `Object` 타입은 더 제한적이다. `Object`로 선언된 변수는 여러 타입의 값을 가질 수 있지만, 그 변수에 특정 메서드나 프로퍼티가 있는지 컴파일러가 검사한다. 따라서, 존재하지 않거나 `Object` 타입에서 보장되지 않는 메서드를 호출하면 컴파일러가 오류를 발생시킨다.
 
 ```tsx
-tsx코드 복사
 let prettySure: Object = 4;
 prettySure.toFixed(); // 오류: 'toFixed' 메서드는 'Object' 타입에 존재하지 않음
 ```
@@ -366,7 +345,6 @@ prettySure.toFixed(); // 오류: 'toFixed' 메서드는 'Object' 타입에 존�
 2. `void`는 보통 함수에서 반환값이 없을 때 반환 타입을 표현하기 위해서 쓰인다.
 
 ```tsx
-tsx코드 복사
 function warnUser(): void {
     console.log("This is my warning message");
 }
