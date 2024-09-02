@@ -23,11 +23,11 @@ typora-root-url: ../
 
 전통적인 객체 탐지 방법은 주로 **핸드 크래프트(Hand-Crafted)** 특성을 사용합니다. 이 방법들은 딥러닝 이전에 주로 사용되었으며, 여전히 일부 응용 분야에서 활용됩니다.
 
-### **Haar Cascades**:
+###1.1.1 **Haar Cascades**:
 
 Viola-Jones 알고리즘을 기반으로, 얼굴 인식과 같은 특정 객체 탐지에 주로 사용되었습니다. 이미지 내에서 다양한 스케일과 위치에서 객체를 탐색하며, 특징 벡터와 분류기를 이용해 객체를 탐지합니다.
 
-### **Histogram of Oriented Gradients (HOG)**:
+###1.1.2 **Histogram of Oriented Gradients (HOG)**:
 
  이미지의 엣지 정보와 방향성을 특징으로 사용하여 객체를 탐지합니다. 주로 SVM(Support Vector Machine)과 같은 분류기와 함께 사용됩니다.
 
