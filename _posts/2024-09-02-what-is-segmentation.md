@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "segmentation의 기본 개념"
+title:  "Segmentation의 기본 개념"
 categories: AI
 tag: [Segmentation]
 toc: true
@@ -13,8 +13,6 @@ typora-root-url: ../
 
 
 
-
-# Segmentation의 기본 개념
 
 # Segmentation의 종류
 
@@ -119,7 +117,24 @@ typora-root-url: ../
 ### 세부방법
 
 - **Fully Convolutional Networks (FCN)**: FCN은 전통적인 CNN의 Fully Connected Layer를 Convolutional Layer로 대체하여, <u>입력 이미지와 동일한 크기의 출력 맵을 생성</u>합니다. 이를 통해 이미지의 각 픽셀을 클래스별로 분류할 수 있습니다.
+
 - **U-Net**: U-Net은 FCN의 한 종류로, 특히 의료 영상 처리에서 많이 사용됩니다. U-Net은 인코더와 디코더 구조로 되어 있으며, 중간의 스킵 연결을 통해 고해상도 정보를 복원합니다. 이 방법은 작은 데이터셋에서도 우수한 성능을 보입니다.
+
+  U-Net은 주로 의료 이미지 분할을 위해 개발된 딥러닝 모델입니다. 이 모델은 "U"자 모양의 네트워크 구조를 가지고 있으며, 두 가지 주요 부분으로 나뉩니다:
+
+  1. **수축 경로(Contracting Path)**:
+     - 이미지에서 특징을 추출하는 부분입니다.
+     - 합성곱(Convolution)과 최대 풀링(Max Pooling)을 통해 이미지의 크기를 줄이며, 중요한 특징을 학습합니다.
+  2. **확장 경로(Expanding Path)**:
+     - 수축 경로에서 얻은 특징을 이용해 이미지를 원래 크기로 복구하는 부분입니다.
+     - 업샘플링(Upsampling)과 스킵 연결(Skip Connections)을 사용하여 해상도를 복원하고 더 정확한 분할을 수행합니다.
+
+  **포인트**
+
+  - **스킵 연결**: 수축 경로의 정보를 확장 경로에 전달해 더 정확한 경계 분할을 돕습니다.
+
+    
+
 - **Mask R-CNN**: Mask R-CNN은 객체 탐지와 Segmentation을 동시에 수행하는 모델로, Faster R-CNN에 Segmentation 브랜치를 추가한 구조입니다. 이 모델은 각 객체의 Bounding Box와 마스크를 동시에 예측하여, 객체의 형태를 더욱 정밀하게 분할할 수 있습니다.
 
 **장점**:
