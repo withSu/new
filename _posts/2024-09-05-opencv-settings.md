@@ -127,7 +127,7 @@ F:\2024_selfcode\cpp_study_vsstudio\opencv_study_Project\opencv_study_Project\x6
 
 # 2. 테스트하기
 
-```json
+```c++
 #include <iostream>
 #include <opencv2/opencv.hpp>
 
@@ -184,9 +184,65 @@ int main()
 
 # 3. 상대경로 이미지 불러와서 열어보기
 
+
+
+
+
+
+
 프로젝트 폴더안에 images라는 폴더를 만들고 sample.jpg파일을 넣습니다.
 
 ![image-20240905103324895](/images/2024-09-05-opencv-settings/image-20240905103324895.png)
+
+
+
+```c++
+#include <iostream>
+#include <opencv2/opencv.hpp>
+
+int main()
+{
+    // 상대 경로 사용 (프로젝트 폴더 내의 images 폴더에 이미지가 있다고 가정)
+    std::string filePath = "images/sample.jpg"; // 실행 파일이 있는 경로 기준으로 상대 경로 사용
+
+    // 프로그램 시작 메시지
+    std::cout << "프로그램이 시작되었습니다." << std::endl;
+
+    // 파일 경로 출력
+    std::cout << "이미지 파일 경로: " << filePath << std::endl;
+
+    // 이미지 불러오기 시도
+    cv::Mat src = cv::imread(filePath, cv::IMREAD_UNCHANGED);
+
+    // 이미지 로드 성공 여부 확인
+    if (src.empty()) {
+        std::cerr << "Error: OpenCV에서 이미지를 불러올 수 없습니다! 경로를 확인하세요." << std::endl;
+        return -1;
+    }
+    else {
+        std::cout << "이미지를 성공적으로 불러왔습니다!" << std::endl;
+        std::cout << "이미지 크기: " << src.cols << " x " << src.rows << std::endl;
+    }
+
+    // 이미지 화면에 표시
+    cv::imshow("Loaded Image", src);
+
+    // 키보드 입력을 대기
+    cv::waitKey(0);
+
+    return 0;
+}
+
+
+```
+
+
+
+
+
+
+
+
 
 
 
