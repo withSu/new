@@ -15,7 +15,9 @@ typora-root-url: ../
 
 
 
-# 1. Opencv 최신 버전(4.10.0) 환경설정 
+# 1. Opencv 최신 버전(4.10.0) 환경설정
+
+#  
 
 ## 1.1 프로젝트 만들기
 
@@ -59,6 +61,8 @@ visualstudio에서 새프로젝트 만들기
 
 ![image-20240905102936649](/images/2024-09-05-opencv-settings/image-20240905102936649.png)
 
+
+
 ### 1.2.1 c++ 일반 메뉴 선택
 
 왼쪽의 C/C++ 메뉴 클릭
@@ -70,6 +74,7 @@ visualstudio에서 새프로젝트 만들기
 다음을 입력합니다,
 
 F:\Program Files\opencv\build\include
+
 
 
 
@@ -96,10 +101,10 @@ F:\Program Files\opencv\build\x64\vc16\lib
 opencv_world4100d.lib
 
 > (F:\Program Files\opencv\build\x64\vc16\lib 경로의 파일을 확인후 복붙합니다)
-
+>
 > [//d.lib](http://d.lib) 파일임을 주의합니다.
 
-그리고 코드를 실행해봅니다.ㅁ
+그리고 코드를 실행해봅니다.
 
 ![image-20240905103201619](/images/2024-09-05-opencv-settings/image-20240905103201619.png)
 
