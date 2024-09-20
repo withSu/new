@@ -114,7 +114,7 @@ int ex0909_6(void)
 }
 ```
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/28371a76-45b8-4a6b-b260-a8589b339055/f4830537-ad84-430e-92b1-97d2cafe046c/image.png)
+
 
 ```
 int b =100;
