@@ -17,16 +17,16 @@ minimal_mistakes_skin    : "air" # "air", "aqua", "contrast", "dark", "dirt", "n
 # Site Settings
 locale                   : "ko-KR"
 rtl                      : # true, false (default) # turns direction of the page into right to left for RTL languages
-title                    : "KBS blog"
+title                    : "Tech withSu"
 title_separator          : "|"
-subtitle                 : "About Tech"
+subtitle                 : "Tech Blog"
 name                     : "KBS-Kim"
 description              : "University student in South Korea."
-url                      : "https://kbs-kim.github.io"
+url                      : "https://withSu.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
-logo                     : "/assets/images/logo.jpeg"
+logo                     : "/assets/images/logo2.jpeg"
 masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
 breadcrumbs              : true
 words_per_minute         : 200
@@ -126,7 +126,7 @@ author:
       url: mailto:kbsbmori3@gmail.com
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/kbs-kim"
+      url: "https://github.com/withSu"
     - label: #"Facebook"
       icon: #"fab fa-fw fa-facebook-square"
       url: #"https://www.facebook.com/eona1301"
@@ -148,7 +148,7 @@ footer:
       #url: "https://www.facebook.com/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/kbs-kim"
+      url: "https://github.com/withSu"
     - label: "GitLab"
       icon: "fab fa-fw fa-gitlab"
       # url:
