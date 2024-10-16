@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "#4 C++ 디폴트인자, 함수 오버로딩"
+title:  "#4 C++ 함수 (인라인함수, 디폴트인자, 함수 오버로딩)"
 categories: C++
 tag: [C++]
 toc: true
@@ -8,12 +8,7 @@ toc_label: "table of content" # toc 이름 설정
 toc_icon: "bars" # 아이콘 설정
 toc_sticky: true # 마우스 스크롤과 함께 내려갈 것인지 설정
 typora-root-url: ../
-
 ---
-
-
-
-# 3-1.함수
 
 
 
