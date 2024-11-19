@@ -287,8 +287,8 @@ int main() {
 ### 4.1.1 선언부의 주요 구성
 
 - 멤버변수와 멤버 함수를 `선언`한다.
-- 멤버 변수는 클래스 선언내에서 `초기화할수 없다.`
-- 멤버 함수는 `원형 형태`로 선언된다. ⇒ 만약에 클래스 선언부에 구현이 되었다면. 자동 인라인 기능이 내재되게 된다.
+- 멤버 변수는 클래스 선언내에서 `초기화할수 없다.` ***
+- 멤버 함수는 `원형 형태`로 선언된다.*** ⇒ 만약에 클래스 선언부에 구현이 되었다면. 자동 인라인 기능이 내재되게 된다.
 
 ### 4.1.2 멤버에 대한 접근 권한 지정
 
@@ -297,7 +297,7 @@ int main() {
 - `디폴트는 private`
 - public: `다른 모든 클래스나 객체`에서 멤버의 접근이 가능함을 표시한다.
 
-### **4.1.3 <클래스 선언부 예시>**:
+### **4.1.3 <클래스 선언부 예시>**
 
 ```cpp
 class Circle {
@@ -315,6 +315,8 @@ public:
 ## 4.2 클래스 구현부
 
 클래스에 정의된 `모든 멤버 함수 구현`. 클래스 선언부에 함께 구현할 수도 있다.
+
+`(여기서 클래스 구현부도 클래스 외부로 간주한다. 따라서, ::를 사용하여야한다.)`
 
 ### **4.2.3 <클래스 구현부 예시**>
 
@@ -498,9 +500,9 @@ Circle* p = &c1;
 double area = (*p).getArea();
 ```
 
-### 6.3.3 `멤버함수안에서 같은 클래스에 정의된` 멤버변수, 멤버함수에 접근
+### 6.3.3 `멤버함수안에서 같은 클래스에 정의된` 멤버변수, 멤버함수에 접근**
 
-- `객체이름을 지정하지 않는다.`
+- `객체이름을 지정하지 않아도 된다. (않는다.)`***
 - 멤버 함수 안에서는 접근 지정자에 상관없이 클래스의 모든 멤버를 사용가능함.
 
 ```cpp
@@ -673,7 +675,7 @@ int main()
 
 `클래스 내부:`
 
-모든 멤버 함수는 private으로 선언된 변수에 직접 접근할 수 있다. 이는 클래스 내부에서 해당 멤버가 필요한 모든 계산과 처리를 할 수 있도록 보장해주기 때문이다.
+`모든 멤버 함수는 private으로 선언된 변수에 직접 접근할 수 있다. 이는 클래스 내부에서 해당 멤버가 필요한 모든 계산과 처리를 할 수 있도록 보장해주기 때문이다.`
 
 ```cpp
 class Rectangle {
@@ -703,7 +705,9 @@ public:
 
 ### 접근 불가능한 곳:***
 
-`클래스 외부(메인함수 포함):`
+`클래스 외부(메인함수 포함, 단 함수구현부의 멤버함수에서는 private변수에 접근 가능하다.!):`
+
+
 
 클래스 외부에서는 private 멤버에 직접 접근할 수 없다. `객체를 생성한 후에도 클래스 외부에서는 private으로 선언된 멤버 변수나 멤버 함수에 직접 접근할 수 없다.` 이 때문에 외부에서 접근할 수 있는 public 멤버 함수를 제공하여, `private멤버 변수에 간접적으로 접근하거나 값을 수정하도록 해야 한다`.
 
@@ -723,3 +727,43 @@ int main() {
 ```
 
 위의 코드에서 `rect.width 또는 rect.height에 직접 접근하려고 하면 **컴파일 에러**가 발생`한다. 대신 `setWidth(), setHeight() 같은 public 멤버 함수를 사용하여 private 멤버 변수의 값을 설정할 수 있다.`
+
+
+
+
+
+또 다른 예시이다.
+```cpp
+#include <iostream>
+using namespace std;
+
+class MyClass {
+private:
+    int privateVar;
+
+public:
+    MyClass(int value) : privateVar(value) {} // 생성자
+
+    void setPrivateVar(int value);  // 멤버 함수 선언
+    void displayPrivateVar() const; // 멤버 함수 선언
+};
+
+// 클래스 외부에서 멤버 함수 구현
+void MyClass::setPrivateVar(int value) {
+    privateVar = value; // private 멤버 변수에 접근 가능
+}
+
+void MyClass::displayPrivateVar() const {
+    cout << "Private Variable: " << privateVar << endl; // private 멤버 변수에 접근 가능
+}
+
+int main() {
+    MyClass obj(10);
+    obj.displayPrivateVar(); // Private Variable: 10
+
+    obj.setPrivateVar(20);
+    obj.displayPrivateVar(); // Private Variable: 20
+
+    return 0;
+}
+```
