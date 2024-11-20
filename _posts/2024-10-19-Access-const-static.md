@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "#8 C++ 접근지정자, const객체, static 멤버"
+title:  "#8 C++ 접근지정자 / const객체 / static 멤버"
 categories: C++
 tag: [C++]
 toc: true
@@ -16,11 +16,13 @@ typora-root-url: ../
 
 객체의 상태를 나타내는 멤버변수에 대한 보호.
 
-중요한 멤버는 다른 클래스나 객체에서 접근할 수 없도록 보
+중요한 멤버는 다른 클래스나 객체에서 접근할 수 없도록 보호
 
 외부와의 인터페이스를 위해서 일부 멤버는 외부에 접근 허용
 
-## 1.1 멤버에 대한 3가지 접근 지정자
+
+
+## 1.1 멤버에 대한 3가지 종류의 접근 지정자
 
 ### Private : 디폴트
 
@@ -157,7 +159,34 @@ int main() {
 
 
 
+만약에 a에 접근하고 싶다면, `a값을 설정하거나 가져오는 **public 멤버 함수**를 추가한다.`
 
+```cpp
+// Setter and Getter for 'a'
+void setA(int value) {
+    a = value;
+}
+
+int getA() const {
+    return a;
+}
+
+```
+
+그러면 다음과 같이 메인함수에서 접근이 가능하다.
+
+```c++
+int main() {
+    PrivateAccessError objB(100);  // public 생성자 호출
+    objB.setA(20);                // Setter를 통해 private 멤버 'a' 설정
+    cout << "a: " << objB.getA() << endl;  // Getter를 통해 private 멤버 'a' 출력
+
+    objB.b = 30;  // public 멤버에 직접 접근
+    cout << "b: " << objB.b << endl;
+
+    objB.g();  // public 멤버 함수 호출 (private 멤버에도 접근 가능)
+}
+```
 
 
 
@@ -272,12 +301,13 @@ public:
         return 3.14 * radius * radius;
     }
 
-    // 접근자 함수: 반지름 값을 가져오는 함수 (getter)
+    // 접근자 함수: 반지름 값을 가져오는 함수 (getter함수)***
     int getRadius() {
         return radius;
     }
 
-    // 접근자 함수: 반지름 값을 설정하는 함수 (setter)
+    // 접근자 함수: 반지름 값을 설정하는 함수 (setter함수)***
+    //반지름이 30이하인 수치만 세팅해주는 함수
     bool setRadius(int r) {
         if (r > 30) {
             return false;  // 반지름이 30을 초과하면 false 반환
@@ -291,12 +321,12 @@ int main() {
     // Circle 객체 생성, 반지름을 5로 설정
     Circle waffle(5);
 
-		~~waffle.radius =5;~~ //private 멤버 접근 불가.
+	// waffle.radius =5; //private 멤버 접근 불가!!! -> 그러므로 setter함수를 만들어놓은것이다.
     // setter 함수로 반지름 설정
     waffle.setRadius(5);
 
 		
-		~~int radius = waffle.radius; //priavate 멤버 접근 불가~~
+	// int radius = waffle.radius; //priavate 멤버 접근 불가!! -> 그러므로 getter함수를 만들어놓은것이다.
     // getter 함수로 반지름 값 출력
     int radius = waffle.getRadius();
     cout << "Circle's radius: " << radius << endl;
@@ -310,6 +340,10 @@ int main() {
 
 함수 이름을 `get`과 `set`으로 정형화해서 사용하는 이유는 **`코드의 가독성**과 **유지보수**` 때문이다.
 `getRadius()`와 같은 함수 이름을 사용하면, 누구라도 해당 함수가 멤버 변수 `radius를 "가져오는"` 함수임을 직관적으로 알 수 있다.
+
+
+
+
 
 ## 3.4 유효성 검사기능 (접근자 함수의 장점)
 
@@ -327,7 +361,7 @@ bool Circle::setRadius(int r) {
 
 
 
-# 4. const객체와 const 멤버함수
+# 4. const객체 /  const 멤버함수
 
 ## 4.1 const 객체
 
@@ -354,7 +388,7 @@ const로 선언된 참조는 함수내부에서 객체의 원본데이터를 수
 //void ShowData(Circle& s); 이게 아닌 const를 사용해보자.
 
 void ShowData(const Circle& s) {
-    // s.setRadius(10);  // 컴파일 에러: const 객체의 값을 수정할 수 없음
+    // s.setRadius(10);  // 컴파일 에러: const 객체인 s의 값을 수정할 수 없음
     cout << "Radius: " << s.getRadius() << endl;
 
 ```
@@ -373,6 +407,10 @@ class 클래스이름 {
 {
 }
 ```
+
+
+
+## 4.3 예시코드
 
 ```cpp
 #include <iostream>
@@ -432,7 +470,7 @@ int main() {
 - 생명주기 - 프로그램이 시작될때 생성, 프로그램 종류시 소멸
 - 사용범위 - 선언된 범위, 접근 지정에 따름
 
-### 5.1.1static 멤버
+### 5.1.1 static 멤버
 
 - 프로그램이 시작할때 생성
 - 클래스 당 하나만 생성, 클래스 멤버라고 불림’
@@ -547,11 +585,11 @@ int main() {
 
 2. 클래스 이름을 통해 접근: `Person::sharedMoney`로 **클래스 이름**을 통해 직접 static 멤버 변수에 접근할 수 있다. `객체를 생성하지 않고도 값을 변경할 수 있다.`
 
-   (static멤버는 클래스마다 오직 한개만 생성되기 때문이다.)
+   `(static멤버는 클래스마다 오직 한개만 생성되기 때문이다.)`
 
    ```cpp
    han.sharedMoney = 200; <=> Person::sharedMoney = 200;  //클래스명으로도 접근가능
-   lee.addShared(200); <=> Person::addShared(200); //클래스명으로도 접근가
+   lee.addShared(200); <=> Person::addShared(200); //클래스명으로도 접근가능
    ```
 
 ### 5.4.2 static 멤버 함수에 접근
@@ -559,16 +597,18 @@ int main() {
 ```cpp
 int main() {
     // 공금 추가: static 멤버 함수 호출
-    Person::addShared(100);  // 클래스 이름으로 호출
+    Person::addShared(100);  // 클래스 이름으로 호출 (방법 1)
     cout << "Shared Money after addShared: " << Person::sharedMoney << endl;
 
+    
     // 객체를 통해서도 static 멤버 함수 호출 가능
     Person han;
-    han.addShared(50);  // 객체를 통해 호출
+    han.addShared(50);  // 객체를 통해 호출 (방법 2)
     cout << "Shared Money after han adds: " << Person::sharedMoney << endl;
 
     return 0;
 }
+
 
 ```
 
@@ -594,11 +634,13 @@ p→addShared(200); // 객체포인터→ static멤버 방식
 
 ## 5.5 static 활용정리
 
-전역변수나 전역 함수를 클래스에 캡슐화
+- 전역변수나 전역 함수를 클래스에 캡슐화
 
-전역변수나 전역함수를 static으로 선언하여 클래스 멤버로 선언한다.
+- 전역변수나 전역함수를 static으로 선언하여 클래스 멤버로 선언한다.
 
-객체 사이에 공유변수를 만들고자 할때 → static 멤버를 선언하여 모든 객체들이 공유
+- 객체 사이에 공유변수를 만들고자 할때 → static 멤버를 선언하여 모든 객체들이 공유
+
+
 
 ## 5.6 static 멤버함수는 static 멤버만 접근 가능
 
@@ -614,17 +656,18 @@ p→addShared(200); // 객체포인터→ static멤버 방식
 class PersonError {
 	int money;
 public:
-	static int getMoney() { return money; } //오류 코드. static멤버함수는 non에 접근불가
+	static int getMoney() { return money; } //오류 코드. static멤버함수는 nonstactic 멤버 에 접근불가
 	
 	void setMoney(int money) { // 정상 코드
-		this->money = money;
+		this->money = money; //this포인터는 호출된 객체를 가리킨다.
+        // this를 사용하여 멤버 변수에 매개변수 값을 대입
 }
 };
 
 int main(){
-	int n = PersonError::getMoney(); 
+	int n = PersonError::getMoney();  // errorKim 객체의 money 값을 가져옴
 	PersonError errorKim;
-	errorKim.setMoney(100);
+	errorKim.setMoney(100);  // errorKim 객체의 money를 100으로 설정
 }
 ```
 
@@ -634,6 +677,8 @@ int n = PersonError::getMoney(); ⇒ `생성되지 않은 money라는 변수를 
 
 PersonError errorKim;
 ⇒ `money는  errorKim이라는 객체가 생길때 비로소 생성된다.`
+
+
 
 ### 5.6.2 non-static 멤버함수는 static에 접근 가능하다.
 
@@ -647,6 +692,45 @@ class Person {
 	}
 }; 
 ```
+
+## 5.7 this
+
+### 5.7.1 this는 왜 필요한가
+- **멤버 변수와 매개변수 이름 충돌 방지**: `멤버 변수와 매개변수 이름이 동일할 때`, 멤버 변수를 명확히 구분하기 위해 필요하다.
+- **객체의 정확한 참조**: 멤버 함수가 호출된 객체를 가리켜 해당 객체의 상태를 조작하거나 확인할 수 있게 한다.
+
+---
+
+### 5.7.2 this의 역할 요약
+- **현재 객체의 주소를 가리키는 포인터**로, 클래스의 멤버 함수 내에서 사용된다.
+
+- 멤버 변수와 매개변수 이름이 동일할 때, **멤버 변수를 참조**하도록 돕는다.
+
+  ```c++
+  void setMoney(int money) {
+      money = money;  // 논리적 오류: 매개변수에 자기 자신을 대입함
+  }
+  
+  
+  //해결
+  void setMoney(int money) {
+      this->money = money;  // this를 사용하여 멤버 변수에 값을 대입
+  }
+  
+  ```
+
+  
+
+- `static` 함수에서는 객체와 독립적으로 동작하므로 **`this`가 존재하지 않는다**.
+
+---
+
+### 5.7.3 this의 생명 주기
+- **멤버 함수 호출 시 생성**: 함수가 실행되면 컴파일러가 호출된 객체의 주소를 `this` 포인터에 자동으로 전달한다.
+- **함수 실행 동안 존재**: 함수가 실행되는 동안만 유효하며, 실행이 끝나면 자동으로 소멸한다.
+- **개발자가 명시적으로 생성하거나 소멸시키지 않아도 된다**.
+
+
 
 # 실습 6-1
 
