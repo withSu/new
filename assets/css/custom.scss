@@ -1,0 +1,9 @@
+code {
+  background-color: $code-background-color !important; /* 일반 모드 */
+}
+
+@media (prefers-color-scheme: dark) {
+  code {
+    background-color: $code-background-color-dark !important; /* 다크모드 */
+  }
+}
