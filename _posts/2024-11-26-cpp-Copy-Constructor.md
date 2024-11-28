@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "#8 C++ 복사생성자"
+title:  "#10 C++ 복사생성자"
 categories: C++
 tag: [C++]
 toc: true
