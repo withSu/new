@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "#1 릴레이션 정규화"
+title:  "Database 릴레이션 정규화"
 categories: database
 tag: database
 toc: true
